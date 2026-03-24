@@ -85,10 +85,11 @@ struct Brain {
         
         return sqrt(sum)
     }
+    
+    //Predicts the class of a new flower
+    func classify(trainingSample: [Sample], newSample: Sample, k: Int) -> String {
         
-    func classify(trainingSample: [Sample], newSample: Sample) {
-        
-    } //Predicts the class of a new flower
+    }
         
     func evaluate() {} //Checks how good your model is
         
