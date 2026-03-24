@@ -7,9 +7,15 @@
 
 import Foundation
 
+print("Print your practise file name, be sure that this file is in a document directory! \n")
+let practiseFile: String = readLine() ?? "iris_training.txt"
+
+print("Print your test file name, be sure that this file is in a document directory! \n")
+let testFile: String = readLine() ?? "iris_test.txt"
+
 let brain = Brain()
-let trainingData = brain.loadData(from: "iris_training.txt")
-let testData = brain.loadData(from: "iris_test.txt")
+let trainingData = brain.loadData(from: practiseFile)
+let testData = brain.loadData(from: testFile)
 
 print("Enter a number k: ", terminator: "")
 let input = readLine()
