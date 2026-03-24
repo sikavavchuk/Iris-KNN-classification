@@ -7,5 +7,11 @@
 
 import Foundation
 
-print("Hello, World!")
+let brain = Brain()
+
+print(brain.loadData())
+
+
+
+
 
