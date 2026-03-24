@@ -113,8 +113,24 @@ struct Brain {
         return predictedLabel
         
     }
+    
+    //Checks how good your model is
+    func evaluate(predictions: [String], actuals: [Sample]) -> Double {
         
-    func evaluate() {} //Checks how good your model is
+        var correctPredictions: Double = 0.0
+        let totalPredictions: Double = Double(actuals.count)
+        
+        for i in 0..<actuals.count {
+            if predictions[i] == actuals[i].label {
+                correctPredictions += 1
+            }
+        }
+        
+        let result: Double = correctPredictions / totalPredictions
+        
+        return result * 100
+        
+    }
         
     func interactiveMode() {} //Lets the user fully interact with my program
         

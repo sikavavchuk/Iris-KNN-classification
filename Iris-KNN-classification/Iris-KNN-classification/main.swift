@@ -15,14 +15,17 @@ print("Enter a number k: ", terminator: "")
 let input = readLine()
 let number = Int(input ?? "Type an Integer! ")
 
-let answer = brain.classify(trainingSample: trainingData, newSample: testData[2], k: number ?? 3)
-
-print(answer)
+var predictions: [String] = []
 
 for i in 0..<testData.count {
     let prediction = brain.classify(trainingSample: trainingData, newSample: testData[i], k: number ?? 3)
+    predictions.append(prediction)
     print("Prediction \(i+1): \(prediction)")
 }
+
+let percentage: Double = brain.evaluate(predictions: predictions, actuals: testData)
+print("-------------")
+print("Percentage of correct answers is: \(percentage)%")
     
 
 
