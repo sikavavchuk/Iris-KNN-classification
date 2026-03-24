@@ -9,33 +9,58 @@ import Foundation
 
 struct Brain {
     
-    func loadData(){
-        
-        // Source - https://stackoverflow.com/a/24098149
-        // Posted by Adam, modified by community. See post 'Timeline' for change history
-        // Retrieved 2026-03-24, License - CC BY-SA 4.0
+    func loadData(from fileName: String) -> [Sample] {
+        var samples: [Sample] = []
 
-        let trainingFile = "iris_training.txt" //this is the file. we will read from it
-
+        //get the file path in Documents folder
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = dir.appendingPathComponent(fileName)
 
-            let fileURL = dir.appendingPathComponent(trainingFile)
-            
-            print(fileURL.path)
-
-            if FileManager.default.fileExists(atPath: fileURL.path) {
-                print("File exists")
-            } else {
-                print("File does NOT exist")
+            //debug lines
+            guard FileManager.default.fileExists(atPath: fileURL.path) else {
+                print("File does NOT exist: \(fileURL.path)")
+                return samples
             }
 
-            //reading
+            print("File exists: \(fileURL.path)")
+
             do {
                 let text = try String(contentsOf: fileURL, encoding: .utf8)
-                print(text)
+                
+                //normalize line endings, replace all \r\n and \r with \n so every line is separated consistently
+                let normalizedText = text
+                    .replacingOccurrences(of: "\r\n", with: "\n")
+                    .replacingOccurrences(of: "\r", with: "\n")
+
+                let lines = normalizedText.split(separator: "\n")
+
+                for line in lines {
+                    let parts = line.split { $0 == " " || $0 == "\t" }
+
+                    guard parts.count >= 2 else { continue }
+
+                    var features: [Double] = []
+
+                    for i in 0..<(parts.count - 1) {
+                        let value = parts[i].replacingOccurrences(of: ",", with: ".")
+                        if let num = Double(value) {
+                            features.append(num)
+                        } else {
+                            print("Warning: could not parse number '\(parts[i])'")
+                        }
+                    }
+
+                    let label = String(parts.last!)
+                    let sample = Sample(features: features, label: label)
+                    samples.append(sample)
+                }
+
+            } catch {
+                print("Error reading file: \(error)")
             }
-            catch {/* error handling here */}
         }
+
+        return samples
     }
     
     func euclidianDistance() {} //Calculates how similar two flowers are
