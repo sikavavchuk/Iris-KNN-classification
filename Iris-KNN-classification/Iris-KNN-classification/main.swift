@@ -8,7 +8,7 @@
 import Foundation
 
 print("Print your practise file name, be sure that this file is in a document directory! \n")
-let practiseFile: String = readLine() ?? "iris_training.txt"
+var practiseFile: String = readLine() ?? "iris_training.txt"
 
 print("Print your test file name, be sure that this file is in a document directory! \n")
 let testFile: String = readLine() ?? "iris_test.txt"
@@ -32,6 +32,30 @@ for i in 0..<testData.count {
 let percentage: Double = brain.evaluate(predictions: predictions, actuals: testData)
 print("-------------")
 print("Percentage of correct answers is: \(percentage)%")
+
+var flag: Bool = true
+
+while flag {
+    
+    print("\nDo you want to try another test? \n")
+    print(">> Type 'exit' to exit the program")
+    
+    let choice: String = readLine() ?? "Type a valid input!"
+    
+    if choice == "exit" {
+        flag = false
+        break
+    }
+    
+    print(">> Do you want to change training data? (Yes/No) ")
+    
+    if readLine()!.lowercased() == "yes" {
+        practiseFile = readLine() ?? "Type a valid input!"
+    } else {
+        brain.interactiveMode(trainingSample: trainingData, k: number ?? 3)
+    }
+    
+}
     
 
 

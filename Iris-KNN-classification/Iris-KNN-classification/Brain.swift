@@ -131,7 +131,28 @@ struct Brain {
         return result * 100
         
     }
+    
+    //Lets the user fully interact with my program
+    func interactiveMode(trainingSample: [Sample], k: Int) {
         
-    func interactiveMode() {} //Lets the user fully interact with my program
+        let amountOfFeatures: Int = trainingSample[1].features.count
+        
+        var userFeatures: [Double] = []
+        
+        for i in 0..<amountOfFeatures {
+            print("Print feature of your sample at index \(i): ")
+            let input = readLine()
+            let feature = Double(input ?? "Type a Double!")!
+            
+            userFeatures.append(feature)
+        }
+        
+        var userSample: Sample = Sample(features: userFeatures, label: "Unknown")
+        
+        let prediction: String = classify(trainingSample: trainingSample, newSample: userSample, k: k)
+        
+        print("The predicted label for your sample is: \(prediction)")
+        
+    }
         
 }
