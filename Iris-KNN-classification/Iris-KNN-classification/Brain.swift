@@ -115,10 +115,9 @@ struct Brain {
     }
     
     //Checks how good your model is
-    func evaluate(predictions: [String], actuals: [Sample]) -> Double {
+    func evaluate(predictions: [String], actuals: [Sample]) -> Int {
         
-        var correctPredictions: Double = 0.0
-        let totalPredictions: Double = Double(actuals.count)
+        var correctPredictions: Int = 0
         
         for i in 0..<actuals.count {
             if predictions[i] == actuals[i].label {
@@ -126,9 +125,7 @@ struct Brain {
             }
         }
         
-        let result: Double = correctPredictions / totalPredictions
-        
-        return result * 100
+        return correctPredictions
         
     }
     
@@ -140,19 +137,19 @@ struct Brain {
         var userFeatures: [Double] = []
         
         for i in 0..<amountOfFeatures {
-            print("Print feature of your sample at index \(i): ")
+            print("Print feature of your sample at index \(i+1): ")
             let input = readLine()
             let feature = Double(input ?? "Type a Double!")!
             
             userFeatures.append(feature)
         }
         
-        var userSample: Sample = Sample(features: userFeatures, label: "Unknown")
+        let userSample: Sample = Sample(features: userFeatures, label: "Unknown")
         
         let prediction: String = classify(trainingSample: trainingSample, newSample: userSample, k: k)
         
         print("The predicted label for your sample is: \(prediction)")
         
     }
-        
+    
 }
