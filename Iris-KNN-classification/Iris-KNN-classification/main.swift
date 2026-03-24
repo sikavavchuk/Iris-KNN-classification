@@ -18,6 +18,11 @@ let number = Int(input ?? "Type an Integer! ")
 let answer = brain.classify(trainingSample: trainingData, newSample: testData[2], k: number ?? 3)
 
 print(answer)
+
+for i in 0..<testData.count {
+    let prediction = brain.classify(trainingSample: trainingData, newSample: testData[i], k: number ?? 3)
+    print("Prediction \(i+1): \(prediction)")
+}
     
 
 
