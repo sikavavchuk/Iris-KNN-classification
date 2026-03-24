@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Iris {
+struct Sample {
     let features: [Double]
     let label: String
 }
