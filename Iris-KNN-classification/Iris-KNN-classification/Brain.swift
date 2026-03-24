@@ -92,7 +92,7 @@ struct Brain {
         
         for i in 0..<trainingSample.count {
             let num = euclidianDistance(trainingSample[i], newSample)
-            let newSampleWithDistance: SampleWithDistance = SampleWithDistance(distance: num, label: trainingSample.last!.label)
+            let newSampleWithDistance: SampleWithDistance = SampleWithDistance(distance: num, label: trainingSample[i].label)
             distances.append(newSampleWithDistance)
         }
         
