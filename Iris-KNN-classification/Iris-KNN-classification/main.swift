@@ -11,13 +11,13 @@ let brain = Brain()
 let trainingData = brain.loadData(from: "iris_training.txt")
 let testData = brain.loadData(from: "iris_test.txt")
 
-print("Number of training samples: \(trainingData.count)")
-print("Number of test samples: \(testData.count)")
+print("Enter a number k: ", terminator: "")
+let input = readLine()
+let number = Int(input ?? "Type an Integer! ")
 
-for i in 0..<min(5, trainingData.count) {
-    let sample = trainingData[i]
-    print("Features: \(sample.features), Label: \(sample.label)")
-}
+let answer = brain.classify(trainingSample: trainingData, newSample: testData[2], k: number ?? 3)
 
+print(answer)
+    
 
 

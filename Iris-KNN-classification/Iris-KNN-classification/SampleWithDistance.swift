@@ -1,5 +1,5 @@
 //
-//  Iris.swift
+//  SampleWithDistance.swift
 //  Iris-KNN-classification
 //
 //  Created by Viktoriia Savchuk  on 24/03/2026.
@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Sample {
-    let features: [Double]
+struct SampleWithDistance {
+    
+    let distance: Double
     let label: String
     
 }

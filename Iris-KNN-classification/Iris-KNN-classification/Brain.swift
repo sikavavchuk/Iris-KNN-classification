@@ -71,9 +71,7 @@ struct Brain {
         
         var sum: Double = 0
         
-        //The guard statement in Swift provides a concise way to enforce early exits from a block of code when certain conditions aren't met. It's commonly used to validate inputs, unwrap optionals, and check preconditions—helping developers write clearer, flatter, and more readable code.
-        
-        guard features1.count != features2.count else {
+        if features1.count != features2.count {
             print("There is something wrong with your datasets.")
             return Double.infinity
         }
@@ -88,6 +86,31 @@ struct Brain {
     
     //Predicts the class of a new flower
     func classify(trainingSample: [Sample], newSample: Sample, k: Int) -> String {
+        
+        var distances: [SampleWithDistance] = []
+        var closestDistances: [SampleWithDistance] = []
+        
+        for i in 0..<trainingSample.count {
+            let num = euclidianDistance(trainingSample[i], newSample)
+            let newSampleWithDistance: SampleWithDistance = SampleWithDistance(distance: num, label: trainingSample.last!.label)
+            distances.append(newSampleWithDistance)
+        }
+        
+        closestDistances = distances.sorted { $0.distance < $1.distance }
+        
+        let kClosestDistances = closestDistances.prefix(k)
+        
+        var voteCount: [String: Int] = [:]
+        
+        for neighbor in kClosestDistances {
+            voteCount[neighbor.label, default: 0] += 1
+        }
+        
+        let sortedVotes = voteCount.sorted { $0.value > $1.value }
+        
+        let predictedLabel: String = sortedVotes.first!.key
+        
+        return predictedLabel
         
     }
         
