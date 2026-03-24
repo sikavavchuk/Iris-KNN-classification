@@ -63,9 +63,32 @@ struct Brain {
         return samples
     }
     
-    func euclidianDistance() {} //Calculates how similar two flowers are
+    //Calculates how similar two flowers are
+    func euclidianDistance(_ sample1: Sample, _ sample2: Sample) -> Double {
         
-    func classify() {} //Predicts the class of a new flower
+        let features1 = sample1.features
+        let features2 = sample2.features
+        
+        var sum: Double = 0
+        
+        //The guard statement in Swift provides a concise way to enforce early exits from a block of code when certain conditions aren't met. It's commonly used to validate inputs, unwrap optionals, and check preconditions—helping developers write clearer, flatter, and more readable code.
+        
+        guard features1.count != features2.count else {
+            print("There is something wrong with your datasets.")
+            return Double.infinity
+        }
+        
+        for i in 0..<features1.count {
+            let difference: Double = features1[i] - features2[i]
+            sum += difference * difference
+        }
+        
+        return sqrt(sum)
+    }
+        
+    func classify(trainingSample: [Sample], newSample: Sample) {
+        
+    } //Predicts the class of a new flower
         
     func evaluate() {} //Checks how good your model is
         
