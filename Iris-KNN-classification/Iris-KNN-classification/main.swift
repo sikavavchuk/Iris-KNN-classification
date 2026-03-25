@@ -11,7 +11,7 @@ print("Print your practise file name, be sure that this file is in a document di
 var practiseFile: String = readLine() ?? "iris_training.txt"
 
 print("-----------------------")
-print("Program is trained using \(practiseFile) and \(practiseFile.count) samples")
+print("Program is trained using \(practiseFile)")
 print("-----------------------")
 
 print("Print your test file name, be sure that this file is in a document directory! \n")
