@@ -11,7 +11,7 @@ print("Print your practise file name, be sure that this file is in a document di
 var practiseFile: String = readLine() ?? "iris_training.txt"
 
 print("-----------------------")
-print("Program is trained using \(practiseFile)")
+print("Program is try to train...")
 print("-----------------------")
 
 print("Print your test file name, be sure that this file is in a document directory! \n")
@@ -19,6 +19,10 @@ let testFile: String = readLine() ?? "iris_test.txt"
 
 print("-----------------------")
 print("Preparing the data...")
+print("-----------------------")
+
+print("-----------------------")
+print("Program is trained and ready to use!")
 print("-----------------------")
 
 let brain = Brain()
@@ -34,7 +38,7 @@ var predictions: [String] = []
 for i in 0..<testData.count {
     let prediction = brain.classify(trainingSample: trainingData, newSample: testData[i], k: number ?? 3)
     predictions.append(prediction)
-    print("Prediction \(i+1): \(prediction), correct answer: \(testData[i])")
+    print("Prediction \(i+1): \(prediction), correct answer: \(testData[i].label)")
 }
 
 let correctPredictions: Int = brain.evaluate(predictions: predictions, actuals: testData)
@@ -59,15 +63,8 @@ while flag {
         flag = false
         break
     }
-    print("-----------------------")
-    print(">> Do you want to change training data? (Yes/No) ")
-    print("-----------------------")
     
-    if readLine()!.lowercased() == "yes" {
-        practiseFile = readLine() ?? "Type a valid input!"
-    } else {
-        brain.interactiveMode(trainingSample: trainingData, k: number ?? 3)
-    }
+    brain.interactiveMode(trainingSample: trainingData, k: number ?? 3)
     
 }
     
