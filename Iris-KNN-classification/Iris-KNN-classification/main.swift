@@ -7,15 +7,9 @@
 
 import Foundation
 
-print("Print your practise file name, be sure that this file is in a document directory! \n")
-var practiseFile: String = readLine() ?? "iris_training.txt"
+let practiseFile: String = "iris_training.txt"
 
-print("-----------------------")
-print("Program is try to train...")
-print("-----------------------")
-
-print("Print your test file name, be sure that this file is in a document directory! \n")
-let testFile: String = readLine() ?? "iris_test.txt"
+let testFile: String = "iris_test.txt"
 
 print("-----------------------")
 print("Preparing the data...")
