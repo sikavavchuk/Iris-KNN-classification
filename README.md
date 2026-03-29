@@ -1,4 +1,4 @@
-This project implements the k-Nearest Neighbors (k-NN) algorithm from scratch in Swift to classify iris flowers based on their features but also you can use your own data samples.
+This project implements the k-Nearest Neighbors (k-NN) algorithm from scratch in Swift to classify iris flowers based on their features.
 The program reads training and test datasets, performs classification using Euclidean distance, evaluates accuracy, and allows interactive predictions for new samples.
 
 How it works:
